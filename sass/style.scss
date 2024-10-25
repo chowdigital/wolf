@@ -1,0 +1,1372 @@
+/*!
+Theme Name: Cloudsdale_Theme
+Theme URI: https://cloudsdale.co.uk/fullfat
+Author: Sean Cloudsdale
+Author URI: https://cloudsdale.co.uk/
+*/
+
+//https://simpleparallax.com/
+
+@import "generic/normalize";
+
+// ===========================================================================
+// My Custom Styles
+// ===========================================================================
+//
+// Table of Contents:
+//
+//  1. Header Settings
+//  2. Typography
+//  3. Navigation
+//  4. Video
+//  5. Home Page
+//  6. Appear
+//  7. Call to action
+//  8.
+//  9. Page layouts
+//  9.1 Blog
+//  10. Buttons
+//  11. Events
+//  12. Menus
+//  13. Hotel
+//  14. Reviews
+//  15. iframe
+
+$primary: #197884;
+$highlight: #197884;
+$white: #fff;
+$cream: #f9f9f9;
+$secondary: #091c2b;
+
+$xs: 575px;
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
+.d-none {
+  display: none;
+}
+.d-block {
+  display: block;
+}
+.d-inline {
+  display: inline;
+}
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  width: 300px;
+}
+
+@media (min-width: $sm) {
+  .d-sm-none {
+    display: none;
+  }
+  .d-sm-block {
+    display: block;
+  }
+  .container {
+    width: 540px;
+  }
+}
+@media (min-width: $md) {
+  .d-md-none {
+    display: none;
+  }
+  .d-md-block {
+    display: block;
+  }
+}
+@media (min-width: $lg) {
+  .d-lg-none {
+    display: none;
+  }
+  .d-lg-block {
+    display: block;
+  }
+  .d-lg-inline {
+    display: inline;
+  }
+  .container {
+    width: 810px;
+  }
+}
+@media (min-width: $xl) {
+  .d-xl-none {
+    display: none;
+  }
+  .d-xl-block {
+    display: block;
+  }
+}
+@media (min-width: $xxl) {
+  .d-xxl-none {
+    display: none;
+  }
+  .d-xxl-block {
+    display: block;
+  }
+  .container {
+    width: 1350px;
+  }
+}
+
+// ===========================================================================
+// 1. Header Settings
+// ===========================================================================
+body,
+#page,
+.view,
+html {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* This ensures they can expand to fit the full content height */
+  min-height: 100%;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+// Settings for navbar in edit mode
+
+body.logged-in {
+  nav,
+  .cm-nav,
+  .hamburger,
+  #bookBtn,
+  .video-container,
+  .page-head-img,
+  #mainLogo,
+  .nav-background {
+    margin-top: 46px;
+  }
+}
+@media (min-width: $md) {
+  body.logged-in {
+    nav,
+    .cm-nav,
+    .hamburger,
+    #bookBtn,
+    .video-container,
+    .page-head-img,
+    #mainLogo,
+    .nav-background {
+      margin-top: 32px;
+    }
+  }
+}
+body {
+  background-color: $white;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-end {
+  align-self: flex-end;
+}
+// ===========================================================================
+//  2. Typography
+// ===========================================================================
+
+// General properties
+body,
+p {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  color: #626262;
+  letter-spacing: 0.04em;
+  line-height: 1.7em;
+  font-size: 0.9em;
+}
+
+h1,
+h2 {
+  font-family: "Caudex", serif;
+  font-weight: 400;
+  line-height: 1em;
+  color: $primary;
+  font-size: 2em;
+  text-align: left;
+}
+
+h3,
+h4,
+h5,
+h6,
+.menu-item a,
+.btn,
+span,
+li {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+}
+h3 {
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+h6 {
+  font-size: 0.7em;
+}
+
+.thick {
+  font-family: Suisse-Works, sans-serif;
+}
+
+// ===========================================================================
+//  3. Navigation
+// ===========================================================================
+
+#bookBtn {
+  position: fixed;
+  font-size: 14px;
+  top: 22px;
+  right: 20px;
+  color: $primary;
+  z-index: 6;
+  a,
+  a:hover,
+  a:visited,
+  a:active {
+    position: relative; /* Enable the positioning of pseudo-elements */
+    margin-left: 5px;
+    color: $primary;
+    text-decoration: none;
+  }
+
+  a::after {
+    content: ""; /* Necessary for the pseudo-element to show */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px; /* Position the underline 5px below the text */
+    height: 1px; /* Height of the underline */
+    background-color: $primary; /* Use the primary color variable for the underline */
+    transition: bottom 0.3s ease-out; /* Apply transition to bottom property for smooth movement */
+  }
+
+  a:hover::after,
+  a:focus::after {
+    bottom: 8px;
+  }
+}
+
+/* Off-canvas menu container */
+.off-canvas-menu {
+  position: fixed;
+  top: 0;
+  left: -100%; /* Start off-canvas menu off-screen */
+  width: 100%;
+  height: 100%;
+  z-index: 999; /* Ensure it appears on top of other elements */
+  transition: left 0.3s ease; /* Add a smooth transition effect */
+  background-color: $primary;
+}
+
+/* Menu content */
+.menu-content {
+  padding: 20px; /* Add padding or styling to your menu content */
+}
+
+/* Button to open the menu */
+.menu-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  border: none;
+  cursor: pointer;
+  z-index: 1000; /* Ensure it's above the menu */
+}
+
+/* Adjust the button and menu position when the menu is open */
+.off-canvas-menu.open {
+  left: 0;
+}
+
+/* animate opening closing */
+
+/* GENERAL STYLES */
+.visuallyHidden {
+  position: absolute;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+}
+
+h1 {
+  text-align: center;
+}
+
+.container-checkbox {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  background-color: transparent;
+}
+
+.hamburger {
+  margin: 0 auto;
+  width: 40px;
+  height: 30px;
+  position: relative;
+}
+
+.hamburger .bar {
+  padding: 0;
+  width: 40px;
+  height: 2px;
+  background-color: $highlight;
+  display: block;
+  border-radius: 4px;
+  transition: all 0.4s ease-in-out;
+  position: absolute;
+}
+
+.bar1 {
+  top: 0;
+}
+
+.bar2,
+.bar3 {
+  top: 13.5px;
+}
+
+.bar3 {
+  right: 0;
+}
+
+.bar4 {
+  bottom: 0;
+}
+
+/* HAMBURGER 1 */
+.checkbox1:checked + label > .hamburger1 > .bar1 {
+  transform: rotate(45deg);
+  transform-origin: 5%;
+  width: 44px;
+  background-color: $white;
+}
+
+.checkbox1:checked + label > .hamburger1 > .bar2 {
+  transform: translateX(-40px);
+  background-color: transparent;
+}
+
+.checkbox1:checked + label > .hamburger1 > .bar3 {
+  transform: translateX(40px);
+  background-color: transparent;
+}
+
+.checkbox1:checked + label > .hamburger1 > .bar4 {
+  transform-origin: 5%;
+  transform: rotate(-45deg);
+  width: 44px;
+  background-color: $white;
+}
+// Main Logo
+#open-menu {
+  z-index: 1000;
+}
+#mainLogo {
+  width: 60px;
+  top: 8px;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  .text-logo,
+  .img-logo {
+    display: none;
+  }
+}
+
+@media (min-width: $sm) {
+  #mainLogo {
+    .img-logo {
+      width: 60px;
+      display: block;
+    }
+  }
+}
+
+@media (min-width: $lg) {
+  #mainLogo {
+    width: 220px;
+    top: 24px;
+    display: flex;
+    justify-content: center;
+    .text-logo {
+      width: 220px;
+      display: block;
+    }
+    .img-logo {
+      display: none;
+    }
+  }
+}
+
+// The Off canvas bit
+.menu-content {
+  background-color: $primary;
+  height: 100%;
+  color: $white;
+  text-decoration: none;
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+#fancyMenu {
+  ul {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+  }
+  ul li {
+    list-style: none;
+    list-style: none;
+    padding: 15px 0px;
+    font-size: 15px;
+    max-width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+  }
+}
+@media (min-width: $sm) {
+  #fancyMenu ul li {
+    font-size: 17px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+}
+@media (min-width: $md) {
+  #fancyMenu ul li {
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+}
+.menu-logo {
+  text-align: center;
+
+  a img {
+    max-width: 400px;
+  }
+}
+.nav-background {
+  position: fixed;
+  width: 100%;
+  height: 65px;
+  background: $white;
+  top: 0;
+  z-index: 5;
+}
+
+// ===========================================================================
+// 4. Video
+// ===========================================================================
+.section-video {
+  height: calc(100vh);
+}
+.video-container {
+  position: relative;
+  height: calc(100% - 20px);
+  width: 100%;
+  overflow: hidden;
+
+  animation-name: fadeInUp;
+  opacity: 0;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+  animation-duration: 2s;
+  animation-fill-mode: forwards;
+}
+
+.video-container video {
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  opacity: 1;
+}
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    //transform: translate3d(0, 40px, 0);
+  }
+  70% {
+    //transform: translate3d(0, 40px, 0);
+    opacity: 0;
+  }
+  100% {
+    //transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* Just styling the content of the div, the *magic* in the previous rules */
+
+.video-container .main-caption {
+  z-index: 1;
+  text-align: center;
+
+  font-size: 30px;
+  width: calc(100% - 40px);
+  height: calc(100% - 60px);
+  opacity: 0.9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-right: 20px;
+  margin-left: 20px;
+  h1 {
+    color: $white !important;
+    text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  }
+}
+
+// ===========================================================================
+// 5. Home Page
+// ===========================================================================
+.container-cream,
+.container-white,
+.container-blue,
+.container-dark,
+.container-navy {
+  position: relative; // Ensure the positioning context for the pseudo-element
+  margin-right: -20px;
+  margin-left: -20px;
+
+  // The ::before pseudo-element for background
+  &::before {
+    content: ""; // Necessary for the pseudo-element to display
+    position: absolute; // Position relative to the parent
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: inherit; // Inherit the background color from the parent or set explicitly
+    z-index: -1; // Behind the content but in front of the animation layer
+    background: $cream;
+  }
+}
+
+.container-white {
+  &::before {
+    background: $white;
+  }
+}
+.container-blue {
+  &::before {
+    background: $primary;
+  }
+}
+
+.container-dark {
+  &::before {
+    background: $secondary;
+  }
+}
+.container-navy {
+  &::before {
+    background: $secondary;
+  }
+}
+.container-white,
+.container-cream,
+.container-blue,
+.container-dark,
+.container-navy {
+  > * {
+    position: relative; // Ensures it's above the ::before pseudo-element
+    width: calc(100% - 40px);
+    margin-right: 20px;
+    margin-left: 20px;
+  }
+}
+@media (min-width: $xl) {
+  .container-white,
+  .container-cream,
+  .container-blue,
+  .container-dark,
+  .container-navy {
+    > * {
+      position: relative; // Ensures it's above the ::before pseudo-element
+      max-width: 1000px;
+      margin-right: auto;
+      margin-left: auto;
+    }
+  }
+}
+
+.card,
+.event-card {
+  position: relative; /* Required for absolute positioning of the text container */
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 400px;
+  width: 322.667px;
+  margin: 1px;
+  margin-bottom: 30px;
+
+  overflow: show; /* Ensures nothing spills outside the card */
+}
+.card::before {
+  content: "";
+  position: absolute;
+  top: -0px; /* Align with the border's position */
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  z-index: 0;
+}
+
+.card:hover::before {
+  border-color: $white;
+}
+
+.text-container {
+  position: absolute;
+  bottom: -10px; /* Adjust as needed */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the container */
+  background-color: $white;
+  padding: 5px 10px; /* Adjust padding as needed */
+  transition: all 0.3s ease; /* Smooth transition for hover effect */
+  width: 80%;
+  text-align: center;
+  color: $primary;
+  font-weight: 700;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.text-container h2 {
+  color: var(--primary); /* Use your primary color variable */
+  text-align: center;
+  margin: 0; /* Removes default margins */
+  font-size: 16px;
+}
+
+.card:hover .text-container {
+  bottom: 0px; /* Moves the container to the center */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0), 0 6px 20px 0 rgba(0, 0, 0, 0);
+  width: 100%;
+  padding: 5px 0px; /* Adjust padding as needed */
+}
+@media (min-width: $lg) {
+  .key-offers {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+@media (max-width: $lg) {
+  .key-offers a {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%;
+    .card {
+      width: 100%;
+      height: 250px;
+    }
+  }
+}
+// ===========================================================================
+// 6. Appear
+// ===========================================================================
+
+.appear2 {
+  -webkit-transition: all 0.8s;
+  transition: all 0.8s;
+  opacity: 0;
+  -webkit-transform: translateY(20px);
+  transform: translateY(20px);
+}
+
+.appear2.inview2 {
+  opacity: 1;
+  -webkit-transform: none;
+  transform: none;
+}
+
+.appear2.inview2:nth-child(1) {
+  -webkit-transition-delay: 0.1s;
+  transition-delay: 0.1s;
+}
+
+.appear2.inview2:nth-child(2) {
+  -webkit-transition-delay: 0.2s;
+  transition-delay: 0.2s;
+}
+
+.appear2.inview2:nth-child(3) {
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+
+.appear2.inview2:nth-child(4) {
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+}
+
+.appear2.inview2:nth-child(5) {
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+.appear2.inview2:nth-child(6) {
+  -webkit-transition-delay: 0.6s;
+  transition-delay: 0.6s;
+}
+
+.appear2.inview2:nth-child(7) {
+  -webkit-transition-delay: 0.7s;
+  transition-delay: 0.7s;
+}
+
+.appear2.inview2:nth-child(8) {
+  -webkit-transition-delay: 0.8s;
+  transition-delay: 0.8s;
+}
+
+.appear2.inview2:nth-child(9) {
+  -webkit-transition-delay: 0.9s;
+  transition-delay: 0.9s;
+}
+
+.appear2.inview2:nth-child(10) {
+  -webkit-transition-delay: 1s;
+  transition-delay: 1s;
+}
+
+.appear2.inview2:nth-child(11) {
+  -webkit-transition-delay: 1.1s;
+  transition-delay: 1.1s;
+}
+
+// ===========================================================================
+// 7. Call to Action
+// ===========================================================================
+.section-parent {
+  position: relative;
+}
+.cta {
+  display: flex;
+}
+.cta-text {
+  flex-basis: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  h2 {
+    color: $white;
+    font-size: 40px;
+    line-height: 45px;
+    padding: 40px 0px;
+    padding-left: 40%;
+  }
+}
+.cta-img {
+  margin: 10px;
+  flex-basis: 70%;
+  img {
+    width: 100%;
+  }
+}
+#ctaBg1 {
+  background-color: #1e3837;
+  width: 50%;
+  position: absolute;
+  height: 140px;
+  overflow: show;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  z-index: -1;
+}
+#ctaSection1 {
+  position: absolute;
+  top: -65px;
+  height: calc(100% + 130px);
+  right: 0;
+  z-index: 3;
+}
+
+#logoSection1 {
+  height: 60px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  z-index: 3;
+}
+
+// ===========================================================================
+// 8. Footer
+// ===========================================================================
+.footer-cols {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  color: white; /* Sets text color to white */
+  padding: 20px;
+  ul {
+    list-style: none;
+  }
+}
+
+.site-footer a {
+  color: white; /* Ensures links are also white */
+}
+
+.container-dark {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.footer-cols-equal {
+  display: flex;
+  justify-content: space-around;
+}
+// ===========================================================================
+// 9. Pages
+// ===========================================================================
+
+.page-head-img {
+  height: 400px;
+  height: 50vh;
+  width: 100%;
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+main,
+footer {
+  width: calc(100% - 40px);
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+  position: relative; /* For absolute positioning of pseudo-elements */
+  margin-bottom: 2em;
+
+  h1,
+  h2 {
+    text-align: left;
+    color: $primary;
+
+    font-weight: 400;
+    flex-basis: 100%; /* Ensures the heading takes full width */
+    border-bottom: solid 2px $primary;
+    padding-bottom: 1em; /* Adjusts space above the border */
+    margin-bottom: 0;
+    font-size: 28px;
+  }
+  a {
+    align-self: flex-end;
+  }
+
+  .section-button {
+    background-color: $primary;
+    margin-top: 0;
+    color: #fff; /* Change as needed */
+    border: none;
+    padding: 0.5em 1em;
+    text-align: center;
+    font-size: 1em;
+    right: 0;
+    align-self: flex-end;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      background-color: darken($primary, 10%); /* Optional: Darken on hover */
+    }
+  }
+}
+section {
+  padding: 70px 0;
+}
+
+// ===========================================================================
+// 9.1 Blog
+// ===========================================================================
+
+.flex-blog-list {
+  margin-top: 40px;
+  h3,
+  h2 {
+    margin: 0.05em;
+  }
+  h3 {
+    font-size: 0.8em;
+    line-height: 1em;
+    text-transform: uppercase;
+  }
+  h2 {
+    margin-left: -4px;
+    margin-top: 10px;
+  }
+}
+.entry-title {
+  font-family: "Open Sans", sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 40px;
+  a,
+  a:visited {
+    color: $secondary !important;
+    text-decoration: none;
+    transition: opacity 0.1s ease-in-out;
+  }
+  a:hover {
+    opacity: 0.8;
+  }
+}
+.entry-category {
+  padding: 0;
+  a {
+    text-decoration: none;
+    color: $primary;
+    transition: opacity 0.1s ease-in-out;
+  }
+  a:hover {
+    opacity: 0.8;
+  }
+}
+
+.image-block {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: 400px;
+}
+.flex-blog-list article {
+  padding: 5% 15%;
+}
+@media (min-width: $lg) {
+  .flex-blog-list {
+    display: flex;
+    flex-direction: row;
+
+    .image-block {
+      flex-basis: 50%;
+    }
+    article {
+      flex-basis: 50%;
+      padding: 0;
+      > * {
+        margin: 0 15%;
+      }
+    }
+  }
+
+  .blog-loop {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .flex-blog-list {
+    flex-basis: 50%;
+  }
+  .flex-blog-list:nth-child(odd) {
+    margin-top: 100px;
+  }
+  .blog-loop > .flex-blog-list:first-child {
+    flex-basis: 100%;
+    margin-top: 0px;
+    .image-block {
+      flex-basis: 75%;
+    }
+    article {
+      flex-basis: 25%;
+      > * {
+        margin: 0 15%;
+      }
+    }
+  }
+  .image-block {
+    height: 400px;
+  }
+}
+// ===========================================================================
+// 10. Buttons
+// ===========================================================================
+
+.underline_link {
+  text-decoration: none;
+  color: $primary;
+  transition: opacity 0.1s ease-in-out;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  a,
+  a:hover,
+  a:visited,
+  a:active {
+    position: relative; /* Enable the positioning of pseudo-elements */
+    color: $primary;
+    text-decoration: none;
+  }
+
+  a::after {
+    content: ""; /* Necessary for the pseudo-element to show */
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -3px; /* Position the underline 5px below the text */
+    height: 2px; /* Height of the underline */
+    background-color: $primary; /* Use the primary color variable for the underline */
+    transition: bottom 0.3s ease-out; /* Apply transition to bottom property for smooth movement */
+  }
+
+  a:hover::after,
+  a:focus::after {
+    bottom: 8px;
+  }
+}
+
+.wp-block-button__link,
+.wp-block-button__link:hover,
+.wp-block-button__link:visited,
+.wp-block-button__link:active {
+  background-color: $primary;
+  margin-top: 0;
+  color: $white;
+  border: none;
+  border-radius: 0; /* This overrides the pill shape to make it a rectangle */
+}
+.wp-block-button__link:hover {
+  background-color: $secondary;
+}
+// ===========================================================================
+// 11.  Events
+// ===========================================================================
+.horizontal-posts-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.horizontal-posts {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+.post-item {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.scroll-left {
+  left: 0;
+}
+
+.scroll-right {
+  right: 0;
+}
+
+.event-card {
+  width: calc(100% - 2px);
+}
+.menu-inner {
+  width: calc(100% - 120px);
+  margin: 0px 60px;
+}
+
+// Contact form 7
+.wpcf7-form {
+  color: $primary !important;
+  padding: 0;
+}
+
+.wpcf7-form p {
+  margin-bottom: 20px;
+}
+
+.wpcf7-form input[type="text"],
+.wpcf7-form input[type="email"],
+.wpcf7-form input[type="date"],
+.wpcf7-form select,
+.wpcf7-form textarea,
+.wpcf7-form input[type="submit"] {
+  width: 100% !important;
+  min-height: 32px;
+  background-color: $white !important;
+  border: 2px solid $primary !important;
+  border-radius: 0 !important;
+  color: $primary !important;
+}
+
+.wpcf7-form input[type="submit"] {
+  background-color: #197884 !important;
+  color: #fff !important;
+  cursor: pointer;
+  padding: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.wpcf7-form input[type="submit"]:hover {
+  background-color: #165c5a !important;
+  color: #efefef !important;
+}
+
+.wpcf7-form .wpcf7-radio .wpcf7-list-item-label {
+  margin-left: 8px;
+}
+
+/* Styling for the response output */
+.wpcf7-response-output {
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 992px) {
+  .wpcf7-form .wpcf7-text,
+  .wpcf7-form .wpcf7-email,
+  .wpcf7-form .wpcf7-date,
+  .wpcf7-form .wpcf7-textarea,
+  .wpcf7-form .wpcf7-select {
+    width: calc(50% - 10px);
+    margin-right: 10px;
+    box-sizing: border-box;
+  }
+
+  .wpcf7-form .wpcf7-submit {
+    width: calc(50% - 10px);
+  }
+}
+@media only screen and (min-width: $lg) {
+  .custom-contact-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    p {
+      flex-basis: 45%;
+    }
+  }
+}
+
+.floor-plan {
+  img {
+    width: 100%;
+  }
+}
+// ===========================================================================
+// 12. Menus
+// ===========================================================================
+
+.tab-pane.active {
+  display: block;
+  opacity: 1;
+}
+
+.tab-pane {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+.container-cream {
+  overflow: hidden;
+  transition: height 0.5s ease-in-out;
+}
+
+@media (min-width: $lg) {
+  .parent-30-70 {
+    display: flex;
+    .child-30 {
+      flex-basis: 30%;
+      display: flex;
+      flex-direction: column;
+    }
+    .child-70 {
+      flex-basis: 70%;
+    }
+  }
+}
+.nav-tabs {
+  list-style-type: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+}
+
+.nav-tabs a {
+  text-decoration: none; /* Remove default underline */
+  position: relative; /* Needed for positioning the :after pseudo-element */
+  display: inline-block; /* Treat the link like a block for positioning */
+}
+
+.nav-tabs a {
+  margin: 0; /* Optional: Adjust spacing as needed */
+  font-size: 18px;
+}
+.nav-tabs li {
+  margin-bottom: 1em;
+}
+
+.underline_link a:after {
+  content: ""; /* Required for :after to show */
+  display: block; /* Make the pseudo-element behave like a block */
+  width: 100%; /* Full width of the link */
+  height: 2px; /* Height of the underline */
+  background-color: $primary; /* Color of the underline */
+  position: absolute;
+  left: 0;
+
+  left: 0;
+  right: 0;
+  bottom: -3px;
+}
+.underline_link a:hover::after,
+.underline_link a:focus::after {
+  bottom: 10px;
+}
+
+// ===========================================================================
+// 13. Hotel
+// ===========================================================================
+
+.hotel-card {
+  width: calc(100% - 120px);
+  margin: 0px 60px;
+}
+.hotel-text {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 40%;
+  margin-right: 20%;
+  margin-bottom: 2em;
+}
+.hotel-img {
+  flex-basis: 100%;
+  height: 300px;
+  position: relative; /* Needed to position the pseudo-element */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+@media (min-width: $md) {
+  .hotel-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: calc(100% - 120px);
+    margin: 0px 60px;
+    flex-direction: row;
+  }
+  .hotel-img {
+    flex-basis: 50%;
+    height: 300px;
+  }
+}
+@media (min-width: $xl) {
+}
+// ===========================================================================
+// 14. Reviews
+// ===========================================================================
+
+#google-reviews {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.review {
+  margin: 10px;
+  padding: 10px;
+
+  p {
+    color: #626262;
+  }
+}
+
+.reviewer-name {
+  font-weight: bold;
+}
+
+@media (max-width: $lg) {
+  #google-reviews .review {
+    display: block;
+  }
+  .review {
+    flex-basis: 100%;
+  }
+  #google-reviews .review {
+    display: none;
+  }
+
+  #google-reviews .review:nth-child(1) {
+    display: block;
+  }
+}
+.container-blue {
+  .page-header h2 {
+    color: $white;
+    border-bottom: solid 2px $white;
+    .section-button {
+      background-color: $white;
+      color: $white;
+    }
+  }
+}
+// ===========================================================================
+//  15. iframe
+// ===========================================================================
+
+.container-blue {
+  .underline_link h2,
+  a,
+  a:link,
+  a:visited,
+  a:hover,
+  a:active {
+    color: $white;
+  }
+  .underline_link a::after {
+    background-color: $white;
+  }
+}

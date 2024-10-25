@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    h2 {
+      font-size: 3rem;
+    }
+
+    .img {
+      width: 95%;
+      max-width: 600px;
+      transition: all 1.5s ease-in;
+    }
+
+    section {
+      background-color: #dbe6eb;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .section-2 {
+      background-color: #fff;
+    }
+
+    .hidden {
+      opacity: 0;
+      transform: translateX(100%);
+    }
+  </style>
+  <body>
+    <section class="section-1">
+      <h2>Section 1</h2>
+    </section>
+    <section class="section-2">
+      <img
+        class="img"
+        src="assets/img/AdobeStock_467539888_Preview.jpeg"
+        alt=""
+      />
+    </section>
+    <section class="section-3">
+      <h2>Section 3</h2>
+    </section>
+  </body>
+  <script>
+    const section = document.querySelector(".section-2");
+    const imgContent = document.querySelector(".img");
+
+    const objOptions = {
+      root: null,
+      threshold: 0.3,
+      rootMargin: "-100px",
+    };
+
+    const sectionObserver = new IntersectionObserver(
+      callBackFunction,
+      objOptions
+    );
+    sectionObserver.observe(section);
+
+    function callBackFunction(entries) {
+      const [entry] = entries;
+      console.log(entry);
+      if (entry.isIntersecting) {
+        imgContent.classList.remove("hidden");
+      } else {
+        imgContent.classList.add("hidden");
+      }
+    }
+  </script>
+</html>
