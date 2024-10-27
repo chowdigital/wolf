@@ -293,342 +293,98 @@ add_action("save_post", "save_custom_meta_box", 10, 3);
 
 
 // Custom Meta tags box END
-
-/*section Features */
-function create_posttype_features() {
-    register_post_type( 'features',
-        // CPT Options
-        array(
-            'labels' => array(
-                'name' => __( 'Features' ),
-                'singular_name' => __( 'Feature' )
-            ),
-            'public' => true,
-            'has_archive' => true,
-            'rewrite' => array('slug' => 'feature'),
-            'show_in_rest' => true,
-            'supports' => array( 'title', 'editor', 'revisions', 'thumbnail' ),
-            'menu_icon' => 'dashicons-lightbulb',
-            'show_in_nav_menus' => true,
-        )
-    );
+// Wolf Homepage Metaboxes 
+// Hook into WordPress to create custom metaboxes
+function custom_add_metaboxes() {
+    add_meta_box('services_metabox', 'Services', 'display_services_metabox', 'page', 'normal', 'high');
+    add_meta_box('team_metabox', 'Team Members', 'display_team_metabox', 'page', 'normal', 'high');
 }
-// Hooking up our function to theme setup
-add_action( 'init', 'create_posttype_features' );
+add_action('add_meta_boxes', 'custom_add_metaboxes');
 
-// Register taxonomy for Features
-function create_features_taxonomy() {
-    register_taxonomy(
-        'feature_category',  // Taxonomy name
-        'features',          // Post type
-        array(
-            'hierarchical' => true, // Allows category-like taxonomies
-            'label' => 'Feature Categories',
-            'query_var' => true,
-            'show_in_rest' => true
-        )
-    );
-}
-
-// Hooking up our taxonomy function to the theme setup
-add_action( 'init', 'create_features_taxonomy' );
-
-// Add a nofollow to features pages so all feature info can be in the archive
-function add_noindex_to_features_post_type() {
-    // Check if on a single post of the 'features' custom post type
-    if (is_singular('features')) {
-        // Adding the noindex, follow meta tag to the head section of the page
-        echo '<meta name="robots" content="noindex, follow">';
+// Display the Services Metabox
+function display_services_metabox($post) {
+    for ($i = 1; $i <= 6; $i++) {
+        $service_title = get_post_meta($post->ID, "service_{$i}_title", true);
+        $service_description = get_post_meta($post->ID, "service_{$i}_description", true);
+        ?>
+<h4>Service <?php echo $i; ?></h4>
+<p>
+    <label for="service_<?php echo $i; ?>_title">Title:</label>
+    <input type="text" id="service_<?php echo $i; ?>_title" name="service_<?php echo $i; ?>_title"
+        value="<?php echo esc_attr($service_title); ?>" style="width:100%;" />
+</p>
+<p>
+    <label for="service_<?php echo $i; ?>_description">Description:</label>
+    <textarea id="service_<?php echo $i; ?>_description" name="service_<?php echo $i; ?>_description"
+        style="width:100%;"><?php echo esc_textarea($service_description); ?></textarea>
+</p>
+<?php
     }
 }
 
-add_action('wp_head', 'add_noindex_to_features_post_type');
-
-// Add a new column to the admin list for the 'features' post type
-function add_features_columns($columns) {
-    $columns['feature_category'] = __('Feature Categories');
-    return $columns;
-}
-add_filter('manage_features_posts_columns', 'add_features_columns');
-
-// Populate the custom column with the 'feature_category' taxonomy terms
-function custom_features_column($column, $post_id) {
-    switch ($column) {
-        case 'feature_category':
-            $terms = get_the_terms($post_id, 'feature_category');
-            if (!empty($terms)) {
-                $out = array();
-                foreach ($terms as $term) {
-                    $out[] = sprintf('<a href="%s">%s</a>',
-                        esc_url(add_query_arg(['post_type' => 'features', 'feature_category' => $term->slug], 'edit.php')),
-                        esc_html(sanitize_term_field('name', $term->name, $term->term_id, 'feature_category', 'display'))
-                    );
-                }
-                echo join(', ', $out);
-            } else {
-                _e('No Feature Categories');
-            }
-            break;
+// Display the Team Members Metabox
+function display_team_metabox($post) {
+    for ($i = 1; $i <= 2; $i++) {
+        $team_name = get_post_meta($post->ID, "team_{$i}_name", true);
+        $team_bio = get_post_meta($post->ID, "team_{$i}_bio", true);
+        $team_email = get_post_meta($post->ID, "team_{$i}_email", true);
+        $team_phone = get_post_meta($post->ID, "team_{$i}_phone", true);
+        ?>
+<h4>Team Member <?php echo $i; ?></h4>
+<p>
+    <label for="team_<?php echo $i; ?>_name">Name:</label>
+    <input type="text" id="team_<?php echo $i; ?>_name" name="team_<?php echo $i; ?>_name"
+        value="<?php echo esc_attr($team_name); ?>" style="width:100%;" />
+</p>
+<p>
+    <label for="team_<?php echo $i; ?>_bio">Biography:</label>
+    <textarea id="team_<?php echo $i; ?>_bio" name="team_<?php echo $i; ?>_bio"
+        style="width:100%;"><?php echo esc_textarea($team_bio); ?></textarea>
+</p>
+<p>
+    <label for="team_<?php echo $i; ?>_email">Email:</label>
+    <input type="email" id="team_<?php echo $i; ?>_email" name="team_<?php echo $i; ?>_email"
+        value="<?php echo esc_attr($team_email); ?>" style="width:100%;" />
+</p>
+<p>
+    <label for="team_<?php echo $i; ?>_phone">Phone:</label>
+    <input type="tel" id="team_<?php echo $i; ?>_phone" name="team_<?php echo $i; ?>_phone"
+        value="<?php echo esc_attr($team_phone); ?>" style="width:100%;" />
+</p>
+<?php
     }
 }
-add_action('manage_features_posts_custom_column', 'custom_features_column', 10, 2);
-/* FEATURES END */
 
-// Flushing rewrite rules on theme or plugin activation
-function my_theme_or_plugin_activation() {
-    // Register custom post types and taxonomies
-    create_posttype_features();
-    create_features_taxonomy();
+// Save the Metabox Data
+function save_custom_metaboxes($post_id) {
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return;
 
-    // Flush rewrite rules
-    flush_rewrite_rules();
-}
-register_activation_hook(__FILE__, 'my_theme_or_plugin_activation');
-
-/* FLUSH END */
-
-
-/**
- * Opening Time Start
- */
-
- function custom_theme_customize_register($wp_customize) {
-    
-	// Section for Custom Images
-	$wp_customize->add_section('custom_images_section', array(
-	  'title' => 'Custom Page Images',
-	  'priority' => 33,
-  ));
-
-  // Setting for Food & Drink Page Image
-  $wp_customize->add_setting('food_drink_page_image', array(
-	  'default' => '',
-	  'transport' => 'refresh',
-  ));
-
-  // Control for Food & Drink Page Image
-  $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'food_drink_page_image', array(
-	  'label' => 'Food & Drink Page Image',
-	  'section' => 'custom_images_section',
-	  'settings' => 'food_drink_page_image',
-  )));
-
-  // Setting for What's On Page Image
-  $wp_customize->add_setting('whats_on_page_image', array(
-	  'default' => '',
-	  'transport' => 'refresh',
-  ));
-
-  // Control for What's On Page Image
-  $wp_customize->add_control(new WP_Customize_Image_Control($wp_customize, 'whats_on_page_image', array(
-	  'label' => 'What\'s On Page Image',
-	  'section' => 'custom_images_section',
-	  'settings' => 'whats_on_page_image',
-  )));
-  
-
-	  
-  // Create a section for opening times
-  $wp_customize->add_section('opening_times', array(
-	  'title' => 'Opening Times',
-	  'priority' => 30,
-  ));
-
-
-  $wp_customize->add_section('opening_times_kitchen', array(
-	  'title' => 'Opening Times Kitchen',
-	  'priority' => 31,
-  ));
-  $wp_customize->add_section('contact_info', array(
-	  'title' => 'Contact Information',
-	  'priority' => 32,
-  ));
-
-
-  // Add a control for each day of the week (Opening Times)
-  $days_of_week = array('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday');
-  foreach ($days_of_week as $day) {
-	  $wp_customize->add_setting('opening_times_' . $day, array(
-		  'default' => 'Closed', // Set the default value to 'Closed'
-	  ));
-
-	  $wp_customize->add_control('opening_times_' . $day, array(
-		  'label' => ucfirst($day) . ' Opening Times',
-		  'section' => 'opening_times',
-		  'type' => 'text',
-	  ));
-  }
-
-  // Add a control for kitchen opening times (Opening Times Kitchen)
-  $days_of_week_kitchen = array('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday');
-  foreach ($days_of_week_kitchen as $day) {
-	  $wp_customize->add_setting('opening_times_kitchen_' . $day, array(
-		  'default' => 'Closed', // Set the default value to 'Closed'
-	  ));
-
-	  $wp_customize->add_control('opening_times_kitchen_' . $day, array( // Added an underscore here
-		  'label' => ucfirst($day) . ' Opening Times Kitchen',
-		  'section' => 'opening_times_kitchen',
-		  'type' => 'text',
-	  ));
-  }
-// Add a control for contact information 
-$contact_info_fields = array('address', 'map', 'phone', 'email', 'instagram');
-foreach ($contact_info_fields as $info_field) {
-  $default_value = '';
-
-  if ($info_field === 'email') {
-	  $default_value = 'example@example.com'; // Default email
-  } elseif ($info_field === 'phone') {
-	  $default_value = '+1234567890'; // Default phone number
-  }
-  $label = ($info_field === 'map') ? 'Enter Google Maps URL' : ucfirst($info_field) . ' Contact Info';
-  $label = ($info_field === 'instagram') ? 'Enter Instagram URL' : ucfirst($info_field) . ' Contact Info';
-
-  $wp_customize->add_setting('contact_info_' . $info_field, array(
-	  'default' => $default_value,
-  ));
-
-  $wp_customize->add_control('contact_info_' . $info_field, array(
-	  'label' => $label,
-	  'section' => 'contact_info',
-	  'type' => 'text',
-  ));
-
-}
-
-}
-add_action('customize_register', 'custom_theme_customize_register');
-  
-//
-
-
-
-
-/**
-* remove customiser options 
-*/ 
-
-function remove_customizer_sections($wp_customize) {
-  // Remove sections you don't want
-  
-  // Remove Header Image
-  $wp_customize->remove_section('header_image');
-  
-  // Remove Colors
-  $wp_customize->remove_section('colors');
-  
-  // Remove Background Image
-  $wp_customize->remove_section('background_image');
-  
-  // Remove Widgets
-  $wp_customize->remove_panel('widgets');
-  
-  // Remove Menus
-  $wp_customize->remove_panel('nav_menus');
-	  
-  // Remove Menus
-  $wp_customize->remove_panel('menus');
-  
-  // Remove Homepage Settings
-  $wp_customize->remove_section('static_front_page');
-  
-  // Remove Additional CSS
-  $wp_customize->remove_section('custom_css');
-}
-
-add_action('customize_register', 'remove_customizer_sections');
-
-/**
-* remove customiser options  END
-*/ 
-/* custom single page layouts */ 
-add_filter('single_template', 'custom_single_template_for_terms');
-
-function custom_single_template_for_terms($single) {
-    global $post;
-
-    // Check for 'spaces' term in the 'feature_category' taxonomy
-    if (has_term('spaces', 'feature_category', $post->ID)) {
-        $custom_template = locate_template('single-spaces.php');
-        if (!empty($custom_template)) {
-            return $custom_template;
+    // Save Services Data
+    for ($i = 1; $i <= 6; $i++) {
+        if (isset($_POST["service_{$i}_title"])) {
+            update_post_meta($post_id, "service_{$i}_title", sanitize_text_field($_POST["service_{$i}_title"]));
+        }
+        if (isset($_POST["service_{$i}_description"])) {
+            update_post_meta($post_id, "service_{$i}_description", sanitize_textarea_field($_POST["service_{$i}_description"]));
         }
     }
 
-    // Check for 'hotel' term in the 'feature_category' taxonomy
-    if (has_term('hotel', 'feature_category', $post->ID)) {
-        $custom_template = locate_template('single-hotel.php');
-        if (!empty($custom_template)) {
-            return $custom_template;
+    // Save Team Members Data
+    for ($i = 1; $i <= 2; $i++) {
+        if (isset($_POST["team_{$i}_name"])) {
+            update_post_meta($post_id, "team_{$i}_name", sanitize_text_field($_POST["team_{$i}_name"]));
+        }
+        if (isset($_POST["team_{$i}_bio"])) {
+            update_post_meta($post_id, "team_{$i}_bio", sanitize_textarea_field($_POST["team_{$i}_bio"]));
+        }
+        if (isset($_POST["team_{$i}_email"])) {
+            update_post_meta($post_id, "team_{$i}_email", sanitize_email($_POST["team_{$i}_email"]));
+        }
+        if (isset($_POST["team_{$i}_phone"])) {
+            update_post_meta($post_id, "team_{$i}_phone", sanitize_text_field($_POST["team_{$i}_phone"]));
         }
     }
-
-    // Return the default template if none of the conditions are met
-    return $single;
-}/* custom single page layouts END */ 
-
-function add_google_tag_manager() {
-    ?>
-<!-- Google tag (gtag.js) google ads -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-347133003"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-
-function gtag() {
-    dataLayer.push(arguments);
 }
-gtag('js', new Date());
+add_action('save_post', 'save_custom_metaboxes');
 
-gtag('config', 'AW-347133003');
-</script>
-<!-- Google tag (gtag.js) analitics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-4CPSM48164"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-
-function gtag() {
-    dataLayer.push(arguments);
-}
-gtag('js', new Date());
-
-gtag('config', 'G-4CPSM48164');
-</script>
-
-<?php
-}
-add_action('wp_head', 'add_google_tag_manager', 999);
-
-function add_gtm_head() {
-    ?>
-<!-- Google Tag Manager -->
-<script>
-(function(w, d, s, l, i) {
-    w[l] = w[l] || [];
-    w[l].push({
-        'gtm.start': new Date().getTime(),
-        event: 'gtm.js'
-    });
-    var f = d.getElementsByTagName(s)[0],
-        j = d.createElement(s),
-        dl = l != 'dataLayer' ? '&l=' + l : '';
-    j.async = true;
-    j.src =
-        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-    f.parentNode.insertBefore(j, f);
-})(window, document, 'script', 'dataLayer', 'GTM-WM4TZZ3W');
-</script>
-<!-- End Google Tag Manager -->
-<?php
-}
-add_action('wp_head', 'add_gtm_head');
-
-function add_gtm_body() {
-    ?>
-<!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WM4TZZ3W" height="0" width="0"
-        style="display:none;visibility:hidden"></iframe></noscript>
-<!-- End Google Tag Manager (noscript) -->
-<?php
-}
-add_action('wp_body_open', 'add_gtm_body');
+// Wolf Homepage Metaboxes END

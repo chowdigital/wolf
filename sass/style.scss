@@ -32,10 +32,10 @@ Author URI: https://cloudsdale.co.uk/
 //  14. Reviews
 //  15. iframe
 
-$primary: #197884;
-$highlight: #197884;
+$primary: #8e364c;
+$highlight: #8e364c;
 $white: #fff;
-$cream: #f9f9f9;
+$cream: #f5f3f3;
 $secondary: #091c2b;
 
 $xs: 575px;
@@ -388,7 +388,7 @@ h1 {
   z-index: 1000;
 }
 #mainLogo {
-  width: 60px;
+  width: 50px;
   top: 8px;
   position: fixed;
   display: flex;
@@ -476,7 +476,7 @@ h1 {
   text-align: center;
 
   a img {
-    max-width: 400px;
+    max-width: 300px;
   }
 }
 .nav-background {
@@ -547,9 +547,15 @@ h1 {
   justify-content: center;
   margin-right: 20px;
   margin-left: 20px;
+  display: flex;
   h1 {
     color: $white !important;
     text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  }
+  img {
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
@@ -1141,19 +1147,26 @@ section {
   border: 2px solid $primary !important;
   border-radius: 0 !important;
   color: $primary !important;
+  text-align: left;
+  padding: 0.2em;
+  font-size: 1em;
 }
-
+.wpcf7-form .wpcf7-submit {
+  padding: 0.2em;
+  font-size: 1.5em;
+  text-align: center;
+}
 .wpcf7-form input[type="submit"] {
-  background-color: #197884 !important;
-  color: #fff !important;
+  background-color: $primary !important;
+  color: $white !important;
   cursor: pointer;
   padding: 10px;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .wpcf7-form input[type="submit"]:hover {
-  background-color: #165c5a !important;
-  color: #efefef !important;
+  background-color: $primary !important;
+  color: $white !important;
 }
 
 .wpcf7-form .wpcf7-radio .wpcf7-list-item-label {
@@ -1179,6 +1192,10 @@ section {
   .wpcf7-form .wpcf7-submit {
     width: calc(50% - 10px);
   }
+}
+.wpcf7-form .wpcf7-submit {
+  font-size: 1.5em !important;
+  text-align: center !important;
 }
 @media only screen and (min-width: $lg) {
   .custom-contact-form {
@@ -1368,5 +1385,75 @@ section {
   }
   .underline_link a::after {
     background-color: $white;
+  }
+}
+// ===========================================================================
+//  16. Wolf changes
+// ==========================================================================
+.wp-block-buttons {
+  padding-top: 2em;
+}
+.two-col-flex {
+  display: flex;
+  gap: 2em; /* Adds 2em spacing between elements */
+  flex-wrap: wrap; /* Allows elements to wrap onto new lines on smaller screens */
+}
+.two-col-flex > * {
+  flex: 1 1 48%; /* Each element takes up approximately half the container width */
+}
+@media (max-width: $sm) {
+  /* Adjust the breakpoint as needed */
+  .two-col-flex {
+    flex-direction: column; /* Stacks elements vertically on mobile screens */
+  }
+}
+.contact-links a {
+  display: block; /* Places each link on a new line */
+  padding-bottom: 0.5em; /* Adds 0.5em padding below each link */
+  color: $primary; /* Uses the defined $primary color */
+  text-decoration: none; /* Optional: removes the underline for cleaner look */
+
+  &:hover {
+    text-decoration: underline; /* Optional: underline on hover */
+  }
+}
+.service-icon {
+  padding: 15% 10% 0% 10%;
+}
+
+// annimation
+
+$original-image-width: 3731.811px; // Half of 7463.622px
+$animation-duration: 30s; // Adjust duration to keep the scrolling speed visually similar
+
+.carousel-container {
+  overflow: hidden;
+  width: 100vw; // Full width of the viewport
+}
+
+.carousel {
+  display: flex;
+  animation: scroll $animation-duration linear infinite;
+
+  img {
+    width: auto;
+    height: 100%; // Maintain aspect ratio based on layout
+    min-width: $original-image-width; // Set the new width
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-#{$original-image-width});
+  }
+}
+.social-icons {
+  display: flex;
+  a img {
+    width: 30px;
+    padding-right: 15px;
   }
 }

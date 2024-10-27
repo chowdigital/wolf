@@ -62,7 +62,7 @@ if (is_single() || is_page()) {
 
                     <div id="fancyMenu" class="menu">
                         <div class="menu-logo"><a href="<?php echo esc_url(home_url('/')); ?>"><img class="appear2"
-                                    src="<?php echo get_template_directory_uri(); ?>/assets/logos/full-white.svg"
+                                    src="<?php echo get_template_directory_uri(); ?>/assets/logos/logo_wolftipple_white.svg"
                                     alt="Kings Arms Hotel - Hampton Court"></a></div>
                         <?php
 							wp_nav_menu(
@@ -80,15 +80,13 @@ if (is_single() || is_page()) {
 
             </div>
             <div id="bookBtn" class="row">
-                <span class="d-none d-lg-inline"> Make a reservation:</span> <span class="d-lg-none"> Book:</span>
-                <a target="blank" href="https://direct-book.com/properties/KingsArmHotelDirect">Hotel</a>
-                <a href="/book-restaurant/">Restaurant</a>
-                <a href="/events-spaces/">Events</a>
+                <a href="#contact">Get in touch</a>
 
 
             </div>
             <a href="<?php echo esc_url(home_url('/')); ?>" id="mainLogo" class="">
-                <img class="text-logo" src="<?php echo get_template_directory_uri(); ?>/assets/logos/logo.svg" alt="">
+                <img class="text-logo"
+                    src="<?php echo get_template_directory_uri(); ?>/assets/logos/logo_wolftipple_wide.svg" alt="">
                 <img class="img-logo" src="<?php echo get_template_directory_uri(); ?>/assets/logos/logo-icon-blue.svg"
                     alt="">
             </a>

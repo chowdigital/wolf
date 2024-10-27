@@ -476,7 +476,7 @@ h2 {
   font-family: "Caudex", serif;
   font-weight: 400;
   line-height: 1em;
-  color: #197884;
+  color: #8e364c;
   font-size: 2em;
   text-align: left;
 }
@@ -511,7 +511,7 @@ h6 {
   font-size: 14px;
   top: 22px;
   right: 20px;
-  color: #197884;
+  color: #8e364c;
   z-index: 6;
 }
 #bookBtn a,
@@ -520,7 +520,7 @@ h6 {
 #bookBtn a:active {
   position: relative; /* Enable the positioning of pseudo-elements */
   margin-left: 5px;
-  color: #197884;
+  color: #8e364c;
   text-decoration: none;
 }
 #bookBtn a::after {
@@ -530,7 +530,7 @@ h6 {
   right: 0;
   bottom: -3px; /* Position the underline 5px below the text */
   height: 1px; /* Height of the underline */
-  background-color: #197884; /* Use the primary color variable for the underline */
+  background-color: #8e364c; /* Use the primary color variable for the underline */
   -webkit-transition: bottom 0.3s ease-out;
   transition: bottom 0.3s ease-out; /* Apply transition to bottom property for smooth movement */
 }
@@ -549,7 +549,7 @@ h6 {
   z-index: 999; /* Ensure it appears on top of other elements */
   -webkit-transition: left 0.3s ease;
   transition: left 0.3s ease; /* Add a smooth transition effect */
-  background-color: #197884;
+  background-color: #8e364c;
 }
 
 /* Menu content */
@@ -611,7 +611,7 @@ h1 {
   padding: 0;
   width: 40px;
   height: 2px;
-  background-color: #197884;
+  background-color: #8e364c;
   display: block;
   border-radius: 4px;
   -webkit-transition: all 0.4s ease-in-out;
@@ -672,7 +672,7 @@ h1 {
 }
 
 #mainLogo {
-  width: 60px;
+  width: 50px;
   top: 8px;
   position: fixed;
   display: -webkit-box;
@@ -717,7 +717,7 @@ h1 {
   }
 }
 .menu-content {
-  background-color: #197884;
+  background-color: #8e364c;
   height: 100%;
   color: #fff;
   text-decoration: none;
@@ -771,7 +771,7 @@ h1 {
   text-align: center;
 }
 .menu-logo a img {
-  max-width: 400px;
+  max-width: 300px;
 }
 
 .nav-background {
@@ -859,10 +859,16 @@ h1 {
           justify-content: center;
   margin-right: 20px;
   margin-left: 20px;
+  display: flex;
 }
 .video-container .main-caption h1 {
   color: #fff !important;
   text-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+.video-container .main-caption img {
+  width: 300px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .container-cream,
@@ -887,7 +893,7 @@ h1 {
   bottom: 0;
   background: inherit;
   z-index: -1;
-  background: #f9f9f9;
+  background: #f5f3f3;
 }
 
 .container-white::before {
@@ -895,7 +901,7 @@ h1 {
 }
 
 .container-blue::before {
-  background: #197884;
+  background: #8e364c;
 }
 
 .container-dark::before {
@@ -971,7 +977,7 @@ h1 {
   transition: all 0.3s ease; /* Smooth transition for hover effect */
   width: 80%;
   text-align: center;
-  color: #197884;
+  color: #8e364c;
   font-weight: 700;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
@@ -1236,11 +1242,11 @@ footer {
 .section-heading h1,
 .section-heading h2 {
   text-align: left;
-  color: #197884;
+  color: #8e364c;
   font-weight: 400;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%; /* Ensures the heading takes full width */
-  border-bottom: solid 2px #197884;
+  border-bottom: solid 2px #8e364c;
   padding-bottom: 1em; /* Adjusts space above the border */
   margin-bottom: 0;
   font-size: 28px;
@@ -1250,7 +1256,7 @@ footer {
       align-self: flex-end;
 }
 .section-heading .section-button {
-  background-color: #197884;
+  background-color: #8e364c;
   margin-top: 0;
   color: #fff; /* Change as needed */
   border: none;
@@ -1264,7 +1270,7 @@ footer {
   position: relative;
 }
 .section-heading .section-button:hover {
-  background-color: #115159; /* Optional: Darken on hover */
+  background-color: #692838; /* Optional: Darken on hover */
 }
 
 section {
@@ -1310,7 +1316,7 @@ section {
 }
 .entry-category a {
   text-decoration: none;
-  color: #197884;
+  color: #8e364c;
   -webkit-transition: opacity 0.1s ease-in-out;
   transition: opacity 0.1s ease-in-out;
 }
@@ -1387,7 +1393,7 @@ section {
 }
 .underline_link {
   text-decoration: none;
-  color: #197884;
+  color: #8e364c;
   -webkit-transition: opacity 0.1s ease-in-out;
   transition: opacity 0.1s ease-in-out;
   font-weight: 600;
@@ -1399,7 +1405,7 @@ section {
 .underline_link a:visited,
 .underline_link a:active {
   position: relative; /* Enable the positioning of pseudo-elements */
-  color: #197884;
+  color: #8e364c;
   text-decoration: none;
 }
 .underline_link a::after {
@@ -1409,7 +1415,7 @@ section {
   right: 0;
   bottom: -3px; /* Position the underline 5px below the text */
   height: 2px; /* Height of the underline */
-  background-color: #197884; /* Use the primary color variable for the underline */
+  background-color: #8e364c; /* Use the primary color variable for the underline */
   -webkit-transition: bottom 0.3s ease-out;
   transition: bottom 0.3s ease-out; /* Apply transition to bottom property for smooth movement */
 }
@@ -1422,7 +1428,7 @@ section {
 .wp-block-button__link:hover,
 .wp-block-button__link:visited,
 .wp-block-button__link:active {
-  background-color: #197884;
+  background-color: #8e364c;
   margin-top: 0;
   color: #fff;
   border: none;
@@ -1480,7 +1486,7 @@ section {
 }
 
 .wpcf7-form {
-  color: #197884 !important;
+  color: #8e364c !important;
   padding: 0;
 }
 
@@ -1497,13 +1503,22 @@ section {
   width: 100% !important;
   min-height: 32px;
   background-color: #fff !important;
-  border: 2px solid #197884 !important;
+  border: 2px solid #8e364c !important;
   border-radius: 0 !important;
-  color: #197884 !important;
+  color: #8e364c !important;
+  text-align: left;
+  padding: 0.2em;
+  font-size: 1em;
+}
+
+.wpcf7-form .wpcf7-submit {
+  padding: 0.2em;
+  font-size: 1.5em;
+  text-align: center;
 }
 
 .wpcf7-form input[type=submit] {
-  background-color: #197884 !important;
+  background-color: #8e364c !important;
   color: #fff !important;
   cursor: pointer;
   padding: 10px;
@@ -1512,8 +1527,8 @@ section {
 }
 
 .wpcf7-form input[type=submit]:hover {
-  background-color: #165c5a !important;
-  color: #efefef !important;
+  background-color: #8e364c !important;
+  color: #fff !important;
 }
 
 .wpcf7-form .wpcf7-radio .wpcf7-list-item-label {
@@ -1540,6 +1555,11 @@ section {
     width: calc(50% - 10px);
   }
 }
+.wpcf7-form .wpcf7-submit {
+  font-size: 1.5em !important;
+  text-align: center !important;
+}
+
 @media only screen and (min-width: 992px) {
   .custom-contact-form {
     display: -webkit-box;
@@ -1625,7 +1645,7 @@ section {
   display: block; /* Make the pseudo-element behave like a block */
   width: 100%; /* Full width of the link */
   height: 2px; /* Height of the underline */
-  background-color: #197884; /* Color of the underline */
+  background-color: #8e364c; /* Color of the underline */
   position: absolute;
   left: 0;
   left: 0;
@@ -1746,4 +1766,95 @@ section {
 }
 .container-blue .underline_link a::after {
   background-color: #fff;
+}
+
+.wp-block-buttons {
+  padding-top: 2em;
+}
+
+.two-col-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 2em; /* Adds 2em spacing between elements */
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; /* Allows elements to wrap onto new lines on smaller screens */
+}
+
+.two-col-flex > * {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 48%;
+          flex: 1 1 48%; /* Each element takes up approximately half the container width */
+}
+
+@media (max-width: 576px) {
+  /* Adjust the breakpoint as needed */
+  .two-col-flex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column; /* Stacks elements vertically on mobile screens */
+  }
+}
+.contact-links a {
+  display: block; /* Places each link on a new line */
+  padding-bottom: 0.5em; /* Adds 0.5em padding below each link */
+  color: #8e364c; /* Uses the defined $primary color */
+  text-decoration: none; /* Optional: removes the underline for cleaner look */
+}
+.contact-links a:hover {
+  text-decoration: underline; /* Optional: underline on hover */
+}
+
+.service-icon {
+  padding: 15% 10% 0% 10%;
+}
+
+.carousel-container {
+  overflow: hidden;
+  width: 100vw;
+}
+
+.carousel {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-animation: scroll 30s linear infinite;
+          animation: scroll 30s linear infinite;
+}
+.carousel img {
+  width: auto;
+  height: 100%;
+  min-width: 3731.811px;
+}
+
+@-webkit-keyframes scroll {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-3731.811px);
+            transform: translateX(-3731.811px);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+  100% {
+    -webkit-transform: translateX(-3731.811px);
+            transform: translateX(-3731.811px);
+  }
+}
+.social-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.social-icons a img {
+  width: 30px;
+  padding-right: 15px;
 }/*# sourceMappingURL=style.css.map */

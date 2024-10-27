@@ -8,103 +8,242 @@
 
             <video playsinline autoplay muted loop id="myVideoLg"
                 poster="<?php echo get_template_directory_uri(); ?>/assets/video/KAH_Video__mute.png">
-                <source src="<?php echo get_template_directory_uri(); ?>/assets/video/KA.mp4" type="video/mp4">
+                <source
+                    src="<?php echo get_template_directory_uri(); ?>/assets/video/AdobeStock_219543334_Video_HD_Preview.mp4"
+                    type="video/mp4">
                 <!-- <source src="<?php echo get_template_directory_uri(); ?>/assets/video/DSC_1805_3.webm" type="video/webm">
             <source src="<?php echo get_template_directory_uri(); ?>/assets/video/DSC_1805_3.ogg" type="video/ogg">-->
             </video>
 
             <div class="main-caption">
-                <?php the_title( '<h1 id="keyMessage" class="">', '</h1>');?>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/logos/logo_wolftipple_white.svg" alt="">
+
             </div>
         </div>
     </div>
 
 
 
-    <section class="container-cream">
+    <section id="about" class="container-cream">
         <header class="page-header section-heading">
-            <h2>Welcome to The Kings Arms Hotel</h2>
-        </header><!-- .page-header -->
-        <div class="key-offers">
+            <?php the_title( '<h1 id="keyMessage" class="">', '</h1>');?>
 
-            <a href="<?php echo get_home_url(); ?>/the-six-restaurant/">
-                <div class="card"
-                    style="background-image: url('<?php echo home_url(); ?>/wp-content/uploads/2024/03/CD1_8343.jpg');">
-                    <div class="text-container">
-                        <span>Food and Drink</span>
-                    </div>
-                </div>
-            </a>
-            <a href="<?php echo get_home_url(); ?>/events-spaces/">
-                <div class="card"
-                    style="background-image: url('<?php echo home_url(); ?>/wp-content/uploads/2024/03/KAH_restaurant_001-1024x683-1.jpg');">
-                    <div class="text-container">
-                        <span>Events</span>
-                    </div>
-                </div>
-            </a>
-            <a href="<?php echo get_home_url(); ?>/hotel/">
-                <div class="card"
-                    style="background-image: url('<?php echo home_url(); ?>/wp-content/uploads/2024/03/About-1.png');">
-                    <div class="text-container">
-                        <span>The Hotel</span>
-                    </div>
-                </div>
-            </a>
-        </div>
+        </header><!-- .page-header -->
+
 
         <div class="the-introduction">
-            <?php
-						the_content(
-							sprintf(
-								wp_kses(
-									/* translators: %s: Name of current post. Only visible to screen readers */
-									__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'cloudsdale-master' ),
-									array(
-										'span' => array(
-											'class' => array(),
-										),
-									)
-								),
-								wp_kses_post( get_the_title() )
-							)
-						);
-
-	
-		?>
+            <?php the_content(); ?>
 
         </div>
     </section>
 
-    <section class="container-white">
+    <section id="services" class="container-white">
         <header class="page-header section-heading">
-            <h2>News and special offers at The Kings Arms</h2>
-            <a href="/whats-on/"><button class="section-button">All News</button></a>
-        </header>
+            <h2>Services</h2>
 
-        <?php get_template_part( 'template-parts/blog-loop', get_post_type() ); ?>
+        </header><!-- .page-header -->
 
+
+        <div class="two-col-flex">
+            <div>
+                <img class="service-icon" src="<?php echo get_template_directory_uri(); ?>/assets/icons/concept.svg"
+                    alt="">
+                <h3>Business Concept Development</h3>
+                <p>Whether starting up or an experienced operator, creating, designing and managing all the moving parts
+                    of your business concept can be daunting.
+
+                    At Wolf & Tipple our team has decades of experience in brand design and development, we strive to
+                    work with you & keep all the moving parts of your business working in harmony to help you deliver
+                    your vision to your customers. We can help fine tune your ideas and deliver a concept that is strong
+                    and profitable.</p>
+
+            </div>
+
+            <div>
+                <img class="service-icon" src="<?php echo get_template_directory_uri(); ?>/assets/icons/stock.svg"
+                    alt="">
+                <h3>Stock Management</h3>
+                <p>Whether starting up or an experienced operator, creating, designing and managing all the moving parts
+                    of your business concept can be daunting.
+
+                    At Wolf & Tipple our team has decades of experience in brand design and development, we strive to
+                    work with you & keep all the moving parts of your business working in harmony to help you deliver
+                    your vision to your customers. We can help fine tune your ideas and deliver a concept that is strong
+                    and profitable.</p>
+
+            </div>
+            <div>
+                <img class="service-icon" src="<?php echo get_template_directory_uri(); ?>/assets/icons/cost.svg"
+                    alt="">
+                <h3>Cost Management</h3>
+                <p>Whether starting up or an experienced operator, creating, designing and managing all the moving parts
+                    of your business concept can be daunting.
+
+                    At Wolf & Tipple our team has decades of experience in brand design and development, we strive to
+                    work with you & keep all the moving parts of your business working in harmony to help you deliver
+                    your vision to your customers. We can help fine tune your ideas and deliver a concept that is strong
+                    and profitable.</p>
+
+            </div>
+
+            <div>
+                <img class="service-icon" src="<?php echo get_template_directory_uri(); ?>/assets/icons/compliance.svg"
+                    alt="">
+                <h3>Compliance</h3>
+                <p>Whether starting up or an experienced operator, creating, designing and managing all the moving parts
+                    of your business concept can be daunting.
+
+                    At Wolf & Tipple our team has decades of experience in brand design and development, we strive to
+                    work with you & keep all the moving parts of your business working in harmony to help you deliver
+                    your vision to your customers. We can help fine tune your ideas and deliver a concept that is strong
+                    and profitable.</p>
+
+            </div>
+            <div>
+                <img class="service-icon" src="<?php echo get_template_directory_uri(); ?>/assets/icons/menu.svg"
+                    alt="">
+                <h3>Menu Design</h3>
+                <p>Whether starting up or an experienced operator, creating, designing and managing all the moving parts
+                    of your business concept can be daunting.
+
+                    At Wolf & Tipple our team has decades of experience in brand design and development, we strive to
+                    work with you & keep all the moving parts of your business working in harmony to help you deliver
+                    your vision to your customers. We can help fine tune your ideas and deliver a concept that is strong
+                    and profitable.</p>
+
+            </div>
+
+            <div>
+                <img class="service-icon" src="<?php echo get_template_directory_uri(); ?>/assets/icons/training.svg"
+                    alt="">
+                <h3>Training</h3>
+                <p>Whether starting up or an experienced operator, creating, designing and managing all the moving parts
+                    of your business concept can be daunting.
+
+                    At Wolf & Tipple our team has decades of experience in brand design and development, we strive to
+                    work with you & keep all the moving parts of your business working in harmony to help you deliver
+                    your vision to your customers. We can help fine tune your ideas and deliver a concept that is strong
+                    and profitable.</p>
+
+            </div>
+
+
+        </div>
     </section>
-
-    <section class="events-container container-cream">
+    <section id="team" class="container-cream">
         <header class="page-header section-heading">
-            <h2>Book the perfect space for your private party</h2>
-            <a href="/events-spaces/"><button class="section-button">View All Spaces</button></a>
-        </header>
+            <h2>Our Team</h2>
 
-        <?php get_template_part( 'template-parts/events-carousel', get_post_type() ); ?>
+        </header><!-- .page-header -->
+
+
+        <div class="two-col-flex">
+
+            <div>
+                <h3>Matt Donnelly</h3>
+                <p>Matt has been working in hospitality for over 20 years, having been employed in both North America
+                    and The UK, Matt has enjoyed an operations roles for 5+ years of his career so far.
+
+                    Matt has always been a creative element within his roles, bringing new ideas, designs and flair.
+                    Having operated as a F&B manager at Elite level sports venues, cocktail bars & gastro pubs, Matt has
+                    continually striven to learn, develop and adapt his skill set to succeed.
+
+                    Matt’s problem solving skills mixed with his broad knowledge of compliance & numbers have given him
+                    a strong track record in success.</p>
+                <div class="contact-links">
+                    <a href="mailto:info@wolfandtipple.com">info@wolfandtipple.com</a>
+                    <a href="tel:+4407568324810">(+44) 07568 324 810</a>
+                </div>
+            </div>
+            <div>
+                <h3>Matt Donnelly</h3>
+                <p>Matt has been working in hospitality for over 20 years, having been employed in both North America
+                    and The UK, Matt has enjoyed an operations roles for 5+ years of his career so far.
+
+                    Matt has always been a creative element within his roles, bringing new ideas, designs and flair.
+                    Having operated as a F&B manager at Elite level sports venues, cocktail bars & gastro pubs, Matt has
+                    continually striven to learn, develop and adapt his skill set to succeed.
+
+                    Matt’s problem solving skills mixed with his broad knowledge of compliance & numbers have given him
+                    a strong track record in success.</p>
+                <div class="contact-links">
+                    <a href="mailto:info@wolfandtipple.com">info@wolfandtipple.com</a>
+                    <a href="tel:+4407568324810">(+44) 07568 324 810</a>
+                </div>
+            </div>
+        </div>
     </section>
-    <section class="hotel-container container-white">
+    <section id="clients" class="container-white">
         <header class="page-header section-heading">
-            <h2>Stay the night at The Kings Arms Hotel, Hampton Court</h2>
-            <a href="/hotel/"><button class="section-button">Find Out More</button></a>
-        </header>
+            <h2>
+                Companies We Have Worked With:
+            </h2>
+
+        </header><!-- .page-header -->
+        <div class="carousel-container">
+            <div class="carousel">
 
 
-        <?php get_template_part( 'template-parts/hotel-carousel', get_post_type() ); ?>
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/wolf-and-tipple-work-with.png"
+                    alt="Scrolling Image" />
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/img/wolf-and-tipple-work-with.png"
+                    alt="Scrolling Image" />
+
+            </div>
+        </div>
     </section>
+    <script>
+    window.addEventListener('resize', () => {
+        const carousel = document.querySelector('.carousel');
+        const imageWidth = 3731.811; // Updated to half the original width
+        const animationDuration = 15; // Adjust for new scrolling speed
+
+        // Recalculate duration based on new viewport width
+        const duration = (animationDuration * (imageWidth / window.innerWidth)).toFixed(2);
+        carousel.style.animationDuration = `${duration}s`;
+    });
+    </script>
+    <section id="contact" class="container-cream">
+        <header class="page-header section-heading">
+            <h2>Get in touch</h2>
+
+        </header><!-- .page-header -->
+        <div class="two-col-flex">
+            <div>
+                <div class="contact-links">
+
+                    <h4>Jon</h4>
+                    <a href="mailto:info@wolfandtipple.com">info@wolfandtipple.com</a>
+                    <a href="tel:+4407568324810">(+44) 07568 324 810</a>
+                    <h4>Matt</h4>
+                    <a href="mailto:info@wolfandtipple.com">info@wolfandtipple.com</a>
+                    <a href="tel:+4407568324810">(+44) 07568 324 810</a>
+                    <br>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/WolfandTipple/" target="_blank">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/icons/facebook.svg"
+                                alt="Facebook Link">
+                        </a>
+                        <a href="https://x.com/i/flow/login?redirect_after_login=%2Fwolfandtipple" target="_blank">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/icons/x.svg" alt="X Link">
+                        </a>
+                        <a href="https://www.instagram.com/wolfandtipple/" target="_blank">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/icons/instagram.svg"
+                                alt="Instagram Link">
+                        </a>
+                        <a href="https://www.linkedin.com/company/wolf-tipple/" target="_blank">
+                            <img src="<?php echo get_template_directory_uri(); ?>/assets/icons/link.svg"
+                                alt="LinkedIn Link">
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div>
 
 
-
+                <?php echo do_shortcode('[contact-form-7 id="b8a5060" title="Contact form 1"]'); ?>
+            </div>
+    </section>
 </main>
 <?php get_footer(); ?>

@@ -14,6 +14,16 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   closeMenu();
+  // Select all links within the off-canvas menu
+  const menuLinks = offCanvasMenu.querySelectorAll("a");
+
+  // Add event listener to each link to close the menu on click
+  menuLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+      closeMenu();
+      openMenuButton.checked = false; // Uncheck the checkbox to keep the menu closed
+    });
+  });
 
   const checkbox = document.getElementById("checkbox1");
 
